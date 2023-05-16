@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>8조를 소개합니다</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+
+      * {
+        font-family: "Gowun Dodum", sans-serif;
+      }
+      .mytitle {
+        background-color: red;
+        color: white;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://i.namu.wiki/i/bWKNh-vz2xRZArCYPgVkfAf34W3zqhv9x9RG52DmbYSdlitkhI-mX6UVP7w2gZ78qY5Sjq16vkcBy6oXebxFhg.webp");
+        background-position: center;
+        background-size: auto;
+      }
+      .mytitle > button {
+        width: 250px;
+        height: 50px;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        border-radius: 50px;
+        margin-top: 30px;
+      }
+      .mytitle > button:hover {
+        border: 2px solid white;
+      }
+      .mycards {
+        /* width: 1200px; */
+        margin: 20px auto;
+      }
+
+      #modal {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+      }
+      .mypost {
+        width: 95%;
+        max-width: 500px;
+        margin: 15% auto 0 auto;
+        background-color: white;
+        border-radius: 5px;
+
+        box-shadow: 0px 0px 3px 0px black;
+        padding: 20px;
+      }
+      .mypost > button {
+        margin-top: 15px;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        write_comment();
+      });
+      function save_comment() {
+        let name = $("#name").val();
+        let comment = $("#comment").val();
+
+        let formData = new FormData();
+        formData.append("name_give", name);
+        formData.append("comment_give", comment);
+
+        fetch("/comment", { method: "POST", body: formData })
+          .then((res) => res.json())
+          .then((data) => {
+            alert(data["msg"]);
+            window.location.reload();
+          });
+      }
+
+      function write_comment() {
+        fetch("/comment")
+          .then((res) => res.json())
+          .then((data) => {
+            let rows = data["result"];
+            rows.forEach((el) => {
+              let name = el.name;
+              let comment = el.comment;
+              let temp_html = `<div class="card" style="max-width:500px; margin: 10px auto">
+                                <div class="card-body">
+                                  <blockquote class="blockquote mb-0">
+                                    <p>${comment}</p>
+                                    <footer class="blockquote-footer">${name}</footer>
+                                  </blockquote>
+                                </div>
+                              </div>`;
+              $("#modal").append(temp_html);
+            });
+          });
+      }
+
+      function modal_open() {
+        $("#modal").show();
+      }
+      function modal_close() {
+        $("#modal").hide();
+      }
+    </script>
+  </head>
+  <body>
+    <div class="mytitle">
+      <h1>에잇</h1>
+      <h3>8조를 소개합니다</h3>
+      <button type="button" onclick="modal_open()">방명록</button>
+    </div>
+    <!-- 댓글모달 -->
+    <div id="modal">
+      <div class="mypost">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="name" placeholder="url" />
+          <label for="floatingInput">닉네임</label>
+        </div>
+        <div class="form-floating">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="comment"
+            style="height: 100px"
+          ></textarea>
+          <label for="floatingTextarea2">응원댓글</label>
+        </div>
+        <button type="button" class="btn btn-dark" onclick="save_comment()">
+          댓글 남기기
+        </button>
+        <button onclick="modal_close()" type="button" class="btn btn-dark">
+          닫기
+        </button>
+      </div>
+    </div>
+    <div class="mycards">
+      <div id="cards" class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+              class="card-img-top"
+              alt="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+            />
+            <div class="card-body">
+              <p>이름 | <strong>제준영</strong></p>
+              <p class="card-text">MBTI | <strong>ISFP</strong></p>
+              <p>TMI | <strong>최근에 J-pop을 자주들어요</strong></p>
+              <p>
+                Blog |
+                <a href="https://velog.io/@wsdx123">
+                  <strong>https://velog.io/@wsdx123</strong>
+                </a>
+              </p>
+              <p>한마디 | <strong>최선을 다해볼게요</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+              class="card-img-top"
+              alt="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+            />
+            <div class="card-body">
+              <p>이름 | <strong>임설빈</strong></p>
+              <p class="card-text">MBTI | <strong>ENFP</strong></p>
+              <p>TMI | <strong>신전떡볶이를 좋아합니다!</strong></p>
+              <p>
+                Blog |
+                <a href="https://velog.io/@qlsl707">
+                  <strong>https://velog.io/@qlsl707 </strong>
+                </a>
+              </p>
+              <p>한마디 | <strong>열심히 하겠습니다!</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+              class="card-img-top"
+              alt="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+            />
+            <div class="card-body">
+              <p>이름 | <strong>백예나</strong></p>
+              <p class="card-text">MBTI | <strong>INFP</strong></p>
+              <p>TMI | <strong>고양이 2마리 키우는 중입니다!</strong></p>
+              <p>
+                Blog |
+                <a href="https://blog.naver.com/driarydiary12">
+                  <strong>https://blog.naver.com/driarydiary12</strong>
+                </a>
+              </p>
+              <p>한마디 | <strong>파이팅 해야지 </strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+              class="card-img-top"
+              alt="https://cdn.kr.aving.net/news/photo/202304/1778023_701599_3852.jpg"
+            />
+            <div class="card-body">
+              <p>이름 | <strong>김채현</strong></p>
+              <p class="card-text">MBTI | <strong>ENFP</strong></p>
+              <p>TMI | <strong>저는 민초파입니다!</strong></p>
+              <p>
+                Blog |
+                <a href="https://sugoccc.tistory.com/">
+                  <strong>https://sugoccc.tistory.com/</strong>
+                </a>
+              </p>
+              <p>한마디 | <strong>최선을 다해볼게요</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
