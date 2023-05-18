@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>에잇</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        .mytitle {
+            background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://i.namu.wiki/i/bWKNh-vz2xRZArCYPgVkfAf34W3zqhv9x9RG52DmbYSdlitkhI-mX6UVP7w2gZ78qY5Sjq16vkcBy6oXebxFhg.webp");
+            background-position: center;
+            background-size: auto;
+            height: 400px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 70px;
+            font-weight: bold;
+        }
+
+        .mycardbar{
+            background-color: rgb(90, 41, 143);
+            color:white;
+            margin: 50px 10px 10px 10px;
+            padding-left: 30px;
+
+        }
+
+        .mycardbar > h2 {
+            font-weight: bold;
+        }
+
+        .lightbulb {
+            padding-bottom:7px;
+
+        }
+        .card-image{ 
+            margin-left:20px;
+            float: left;
+
+        }
+        
+        .card-txt{
+            
+            margin:20px 0px 0px 20px;
+            padding-left:200px;
+
+        }
+
+        .slides {
+            padding: 0;
+            width: 600px;
+            height: 420px;
+            display: block;
+            margin: 50px 20px 300px 300px;
+            position: relative;
+        }
+        .slides * {
+            user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+        .slides input { display: none; }
+
+        .slide-container { display: block; }
+
+        .slide {
+            top: 0;
+            opacity: 0;
+            width: 609px;
+            height: 420px;
+            display: block;
+            position: absolute;
+        
+            transform: scale(0);
+        
+            transition: all .7s ease-in-out;
+        }
+        .slide img{
+            width:100%;
+            height:100%;
+        }
+        .nav label {
+            width: 200px;
+            height: 100%;
+            display: none;
+            position: absolute;
+            opacity: 0;
+            z-index: 9;
+            cursor: pointer;
+            transition: opacity .2s;
+            color: #FFF;
+            font-size: 156pt;
+            text-align: center;
+            line-height: 380px;
+            font-family: "Varela Round", sans-serif;
+            background-color: rgba(255, 255, 255, .3);
+            text-shadow: 0px 0px 15px rgb(119, 119, 119);
+        }
+        
+        .slide:hover + .nav label { opacity: 0.5; }
+        .nav label:hover { opacity: 1; }
+        .nav .next { right: 0px; }
+        input:checked + .slide-container  .slide {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s ease-in-out;
+        }
+
+        input:checked + .slide-container .nav label { display: block; }
+
+        .blog-url {
+            color:black;
+            text-decoration: none
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="mytitle">
+    <h1>팀원 소개 페이지: 에잇</h1>
+    
+</div>
+
+<div class="mycardbar">
+    <h2> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="lightbulb" viewBox="0 0 16 16">
+        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+      </svg> 
+      Team 에잇</h2>
+</div>
+
+
+    <div>
+        
+        <div class="card-image">
+        <img src="https://i.postimg.cc/pXRVympf/4.jpg" alt="image" width="170" height="180">
+        </div>
+
+
+        <div class = "card-txt">
+            <h3><strong>안녕하세요 저희 팀원을 소개합니다</strong></h3><br />
+            <h5><strong>이름:</strong> 김채현 <br><br>
+            <strong>MBTI:</strong> ENFP(활동가)<br><br>
+            활동가는 친절하고 사교적인 성격으로 다른 사람과의 관계를 맺는 일과 사교 활동을 즐깁니다.<br>
+            하지만 사교적이고 느긋해 보이는 겉모습과 달리 깊은 내면을 지니고 있으며 창의력이 풍부하고 호기심이 많은 성격입니다.<br>
+            활동가는 자신의 상상력을 자극하는 일에 강한 열정을 보이며 이러한 열정은 다른 사람에게도 전달됩니다.<br><br>
+            <strong>업무성향 MICT:</strong>최강 생존러<br><br>
+            당신의 이런 역량은 업무에서 특히 빛을 발해요.<br>
+            스트레스를 잘 받지 않으며, 회복 능력이 뛰어나 평정심을 잘 유지하기 때문에 상황을 객관적으로 바라볼 수 있죠.<br>
+            많은 사람들이 혼란스러워하는 상황에서도 당신은 업무에 집중하며 빠르게 끝낼 수 있죠.<br>
+            또한 부정적인 감정을 다른 사람에게 전달하지 않으니, 동료들이 함께 일하고 싶어 하는 1순위 일 거예요.<br><br>
+            <strong>한마디:</strong>다 같이 화이팅합시당😀<br><br>
+            <p><strong>TMI:</strong> 저는 민초파입니다</p>
+            <p><strong>url: </strong><a href="https://sugoccc.tistory.com/" class="blog-url">https://sugoccc.tistory.com/</a></p>
+            </h5>
+            </h5>
+
+
+        </div>
+    </div>
+
+    <div class="mycardbar">
+        <h2> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="lightbulb" viewBox="0 0 16 16">
+            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+          </svg> 
+          더 알아보기</h2>
+    </div>
+    <div class="moreimage">
+
+        <ul class="slides">
+            <input type="radio" name="radio-btn" id="img-1" checked />
+            <li class="slide-container">
+            <div class="slide">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOS10BDi34sAimmacyrjdpP03_lgS8EyBfVQ&usqp=CAU" />
+            </div>
+            <div class="nav">
+            <label for="img-6" class="prev">&#x2039;</label>
+            <label for="img-2" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-2" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_k3InLSbA4_DC5PFn_SNLhEq-zZIi8FgYJQ&usqp=CAU" />
+                </div>
+            <div class="nav">
+            <label for="img-1" class="prev">&#x2039;</label>
+            <label for="img-3" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-3" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://i.postimg.cc/LXgCNPjW/image.jpg" />
+                </div>
+            <div class="nav">
+            <label for="img-2" class="prev">&#x2039;</label>
+            <label for="img-4" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-4" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://i.postimg.cc/90TjQZZH/Kakao-Talk-20230517-151356178-04.jpg" />
+                </div>
+            <div class="nav">
+            <label for="img-3" class="prev">&#x2039;</label>
+            <label for="img-5" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+
+        
+        </ul>
+       
+    </div>
+
+
+        
+     
+</body>
+</html>

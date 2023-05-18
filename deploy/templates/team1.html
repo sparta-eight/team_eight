@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>에잇</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        .mytitle {
+            background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+            url("https://i.namu.wiki/i/bWKNh-vz2xRZArCYPgVkfAf34W3zqhv9x9RG52DmbYSdlitkhI-mX6UVP7w2gZ78qY5Sjq16vkcBy6oXebxFhg.webp");
+            background-position: center;
+            background-size: auto;
+            height: 400px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 70px;
+            font-weight: bold;
+        }
+
+        .mycardbar{
+            background-color: rgb(90, 41, 143);
+            color:white;
+            margin: 50px 10px 10px 10px;
+            padding: 0px 0px 0px 30px;
+        }
+        .mycardbar > h2 {
+            font-weight: bold;
+        }
+        .lightbulb {
+            padding-bottom:7px;
+        }
+        .card-image{ 
+            margin-left:20px;
+            float: left;
+
+        }
+        
+        .card-txt{
+            margin:20px 0px 0px 20px;
+            padding-left:200px;
+
+        }
+
+        .slides {
+            padding: 0;
+            width: 600px;
+            height: 420px;
+            display: block;
+            margin: 50px 20px 300px 300px;
+            position: relative;
+        }
+        .slides * {
+            user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+        .slides input { display: none; }
+
+        .slide-container { display: block; }
+
+        .slide {
+            top: 0;
+            opacity: 0;
+            width: 609px;
+            height: 420px;
+            display: block;
+            position: absolute;
+            transform: scale(0);
+            transition: all .7s ease-in-out;
+        }
+        .slide img{
+            width:100%;
+            height:100%;
+        }
+        .nav label {
+            width: 200px;
+            height: 100%;
+            display: none;
+            position: absolute;
+            opacity: 0;
+            z-index: 9;
+            cursor: pointer;
+            transition: opacity .2s;
+            color: #FFF;
+            font-size: 156pt;
+            text-align: center;
+            line-height: 380px;
+            font-family: "Varela Round", sans-serif;
+            background-color: rgba(255, 255, 255, .3);
+            text-shadow: 0px 0px 15px rgb(119, 119, 119);
+        }
+        
+        .slide:hover + .nav label { opacity: 0.5; }
+        .nav label:hover { opacity: 1; }
+        .nav .next { right: 0px; }
+        input:checked + .slide-container  .slide {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s ease-in-out;
+        }
+
+        input:checked + .slide-container .nav label { display: block; }
+        .blog-url {
+            color:black;
+            text-decoration: none
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="mytitle">
+    <h1>팀원 소개 페이지: 에잇</h1>
+</div>
+
+<div class="mycardbar">
+    <h2> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="lightbulb" viewBox="0 0 16 16">
+        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+      </svg> 
+      Team 에잇</h2>
+</div>
+    <div>
+        <div class="card-image">
+        <img src="https://i.postimg.cc/RCcVM7VC/1.jpg" alt="image" width="200" height="200">
+        </div>
+        <div class = "card-txt">
+            <h3><strong>안녕하세요 저희 팀원을 소개합니다</strong></h3><br>
+            <h5><strong>이름:</strong> 제준영 <br><br>
+            <strong>MBTI:</strong> ISFP(모험가)<br><br>
+            모험가는 유연한 사고 방식과 관용적이고 개방적인 태도를 지니고 있습니다.<br> 
+            이들은 자신과 생각이나 라이프스타일이 다른 사람도 받아들입니다.<br>  
+            또한 자기 생각이나 의견을 바꾸는 데도 거리낌이 없으며 다른 사람도 변화할 수 있다고 믿곤 합니다.<br><br>
+            <strong>업무성향 MICT:</strong> 핵인싸 워킹 메이트<br><br>
+            당신은 사람들과 함께 일하는 것이 즐겁죠.<br>함께 공동의 목표를 달성하려고 주변을 잘 살피고 필요한 것을 지원해 줄 준비가 되어 있어요.<br>
+            당신은 일을 혼자 하는 것보다 여러 명이 같이 할 때의 장점을 누구보다 잘 이해하고 있기에<br>당신과의 공동 작업을 기다리는 사람이 많을 거예요.</p>
+            <strong>한마디:</strong>최선을 다해볼게요<br><br>
+            <p><strong>TMI:</strong> 최근 JPOP을 듣고 있습니다</p>
+            <p><strong>url:</strong><a href="https://velog.io/@wsdx123" class="blog-url"> https://velog.io/@wsdx123</a></p>
+            </h5>
+        </div>
+    </div>
+
+    <div class="mycardbar">
+        <h2> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="lightbulb" viewBox="0 0 16 16">
+            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+          </svg> 
+          더 알아보기</h2>
+    </div>
+    <div class="moreimage">
+
+        <ul class="slides">
+            <input type="radio" name="radio-btn" id="img-1" checked />
+            <li class="slide-container">
+            <div class="slide">
+            <img src="https://i.postimg.cc/MZ0WZfQx/image.jpg" />
+            </div>
+            <div class="nav">
+            <label for="img-6" class="prev">&#x2039;</label>
+            <label for="img-2" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-2" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://i.postimg.cc/DwXpFLSP/jpop.jpg" />
+                </div>
+            <div class="nav">
+            <label for="img-1" class="prev">&#x2039;</label>
+            <label for="img-3" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-3" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://i.postimg.cc/d0cH03dP/image.jpg" />
+                </div>
+            <div class="nav">
+            <label for="img-2" class="prev">&#x2039;</label>
+            <label for="img-4" class="next">&#x203a;</label>
+            </div>
+            </li>
+        
+            <input type="radio" name="radio-btn" id="img-4" />
+            <li class="slide-container">
+                <div class="slide">
+                <img src="https://i.postimg.cc/90TjQZZH/Kakao-Talk-20230517-151356178-04.jpg" />
+                </div>
+            <div class="nav">
+            <label for="img-3" class="prev">&#x2039;</label>
+            <label for="img-5" class="next">&#x203a;</label>
+            </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
