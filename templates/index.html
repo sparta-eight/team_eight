@@ -13,11 +13,6 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="https://svgsilh.com/png-1024/150797.png"
-    />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
@@ -33,59 +28,80 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://i.postimg.cc/T3LH1LYC/8.png"
+    />
+
     <style>
       * {
         font-family: "Gowun Dodum", sans-serif;
       }
       .mytitle {
-        /* background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210207/pngtree-green-simple-solid-color-background-image_557101.jpg"); */
-        background-color: rgb(190 229 176);
-        height: 300px;
+        background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://i.namu.wiki/i/bWKNh-vz2xRZArCYPgVkfAf34W3zqhv9x9RG52DmbYSdlitkhI-mX6UVP7w2gZ78qY5Sjq16vkcBy6oXebxFhg.webp");
+        background-position: center;
+        background-size: auto;
+        height: 400px;
         color: white;
-        text-align: center;
-        padding: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 70px;
+        font-weight: bold;
       }
       .mytitle > button {
         width: 250px;
         height: 50px;
         background-color: transparent;
         border: 1px solid white;
-        color: white;
+
         border-radius: 50px;
         margin-top: 30px;
+
+        color: white;
+        transition: all 2s, color 2;
       }
       .mytitle > button:hover {
         border: 2px solid white;
+        color: #fff;
       }
 
       .mytxtbar {
-        background-color: rgb(190 229 176);
+        background-color: rgb(90, 41, 143);
         color: white;
         margin: 50px 10px 10px 10px;
         padding: 0px 0px 0px 30px;
+      }
+      .mytxtbar > h2 {
+        font-weight: bold;
       }
       .lightbulb {
         padding-bottom: 7px;
       }
       .mytxt {
-        margin: auto auto auto auto;
         padding: 60px;
       }
       .mycardsbar {
-        background-color: rgb(190 229 176);
+        background-color: rgb(90, 41, 143);
         color: white;
         margin: 50px 10px 10px 10px;
         padding: 0px 0px 0px 30px;
+      }
+      .mycardsbar > h2 {
+        font-weight: bold;
       }
       .mycards {
         text-align: center;
         margin: 20px 20px 200px 20px;
       }
 
-      .blog-url {
-        color: black;
-        text-decoration: none;
-      }
       #modal {
         position: fixed;
         z-index: 1;
@@ -97,18 +113,35 @@
         background-color: rgba(0, 0, 0, 0.4);
         display: none;
       }
+
       .mypost {
         width: 95%;
         max-width: 500px;
         margin: 15% auto 0 auto;
         background-color: white;
         border-radius: 5px;
-
         box-shadow: 0px 0px 3px 0px black;
         padding: 20px;
+        text-align: center;
       }
       .mypost > button {
         margin-top: 15px;
+        background-color: rgb(90, 41, 143);
+        border: none;
+      }
+
+      .card-body > button {
+        margin-top: 10px;
+        margin-right: 5px;
+        float: right;
+        color: white;
+        background-color: rgb(90, 41, 143);
+        border: none;
+        border-radius: 5px;
+        padding: 6px 12px;
+      }
+      .card-body > button:hover {
+        background-color: black;
       }
     </style>
     <script>
@@ -118,11 +151,9 @@
       function save_comment() {
         let name = $("#name").val();
         let comment = $("#comment").val();
-
         let formData = new FormData();
         formData.append("name_give", name);
         formData.append("comment_give", comment);
-
         fetch("/comment", { method: "POST", body: formData })
           .then((res) => res.json())
           .then((data) => {
@@ -139,16 +170,49 @@
               let name = el.name;
               let comment = el.comment;
               let temp_html = `<div class="card" style="max-width:500px; margin: 10px auto">
-                                <div class="card-body">
-                                  <blockquote class="blockquote mb-0">
-                                    <p>${comment}</p>
-                                    <footer class="blockquote-footer">${name}</footer>
-                                  </blockquote>
-                                </div>
-                              </div>`;
+                                  <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                      <p>${comment}</p>
+                                      <footer class="blockquote-footer">${name}</footer>
+                                    </blockquote>
+                                  </div>
+                                </div>`;
               $("#modal").append(temp_html);
             });
           });
+      }
+      function write_comment() {
+        fetch("/comment")
+          .then((res) => res.json())
+          .then((data) => {
+            let rows = data["result"];
+            rows.forEach((el) => {
+              let name = el.name;
+              let comment = el.comment;
+              let temp_html = `<div class="card" style="max-width:500px; margin: 10px auto">
+                                          <div class="card-body">
+                                              <blockquote class="blockquote mb-0">
+                                                  <p>${comment}</p>
+                                                  <footer class="blockquote-footer">${name}</footer>
+                                              </blockquote>
+                                              <button type="button" onclick="del_comment('${name}')">삭제</button>
+                                          </div>
+                                      </div>`;
+              $("#modal").append(temp_html);
+            });
+          });
+      }
+      function del_comment(name) {
+        if (confirm("삭제하시겠습니까?")) {
+          let formData = new FormData();
+          formData.append("name_give", name);
+          fetch("/comment/delete", { method: "POST", body: formData })
+            .then((res) => res.json())
+            .then((data) => {
+              alert(data["msg"]);
+              window.location.reload();
+            });
+        }
       }
 
       function modal_open() {
@@ -163,8 +227,12 @@
   <body>
     <div class="mytitle">
       <h1>팀원 소개 페이지: 에잇</h1>
-      <button type="button" onclick="modal_open()">방명록</button>
+
+      <button class="btn hover1" type="button" onclick="modal_open()">
+        방명록
+      </button>
     </div>
+
     <div id="modal">
       <div class="mypost">
         <div class="form-floating mb-3">
@@ -216,27 +284,38 @@
         height="200"
       />
       <br /><br />
-      <h3>에잇, 열심히 배우고있는 8조입니다!</h3>
+      <strong><h3>에잇, 열심히 배우고 있는 8조입니다!</h3></strong>
 
-      <h5><br />이 페이지를 완성하기 위해 ..</h5>
+      <strong
+        ><h5><br />이 페이지를 완성하기 위해 ..</h5></strong
+      >
       <details>
         <summary>더보기</summary>
         <p>
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다.
+          공평하게 역할 분담을 했습니다. <br />
+          주기적인 회의를 진행했습니다. <br />
+          업무 성향을 파악해보았습니다. <br />
+          <a
+            href="https://www.jobkorea.co.kr/help/notice/view?no=14498"
+            style="color: gray"
+            >(업무 역량테스트 바로가기)</a
+          >
+          <br />
+          네 명의 많은 노력이 들어갔습니다.
         </p>
       </details>
 
-      <h5><br />저희 팀의 궁극적인 목표는..</h5>
+      <strong
+        ><h5><br />저희 팀의 궁극적인 목표는..</h5></strong
+      >
       <details>
-        <summary>생략</summary>
+        <summary>더보기</summary>
         <p>
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다. <br />
-          추가 설명이 필요합니다.
+          페이지 완성이었습니다. <br />
+          처음에는 단순한 페이지였지만, <br />
+          수없이 수정하고 점진적으로 발전했습니다.<br />
+          <br />
+          이상으로 팀원을 소개하겠습니다.
         </p>
       </details>
     </div>
@@ -262,79 +341,53 @@
       <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
         <div class="col">
           <div class="card h-100">
-            <img
-              src="https://i.postimg.cc/0y5CSgNr/image.jpg"
-              class="card-img-top"
-            />
-            <div class="card-body">
-              <h5 class="card-title">제준영</h5>
-              <p class="MBTI">ISFP</p>
-              <p class="card-text">
-                최선을 다해볼게요<br />TMI: 최근 JPOP을 듣고 있습니다.
-              </p>
-              <p>
-                <a href="https://velog.io/@wsdx123" class="blog-url"
-                  >https://velog.io/@wsdx123</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
-            <img
-              src="https://i.postimg.cc/0y5CSgNr/image.jpg"
-              class="card-img-top"
-            />
-            <div class="card-body">
-              <h5 class="card-title">임설빈</h5>
-              <p class="MBTI">ENFP</p>
-              <p class="card-text">열심히 하겠습니다!</p>
-              <p>
-                <a href="https://velog.io/@qlsl707" class="blog-url"
-                  >https://velog.io/@qlsl707</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card h-100">
             <a href="/team1"
               ><img
-                src="https://i.postimg.cc/0y5CSgNr/image.jpg"
+                src="https://i.namu.wiki/i/IUKpnzynPCMlkcs4qRLos3NAnwQu48KLCi7eUXFK0RDyRO1o4rgquRpH2iEJh6G4CGkiGglBWuDp04zsc4Cwww.webp"
+                ,
                 class="card-img-top"
             /></a>
             <div class="card-body">
-              <h5 class="card-title">백예나</h5>
-              <p class="MBTI">INFP</p>
-              <p class="card-text">파이팅 해야지</p>
-              <p>
-                <a href="https://blog.naver.com/driarydiary12" class="blog-url"
-                  >https://blog.naver.com/driarydiary12</a
-                >
-              </p>
+              <h3 class="card-title">제준영</h3>
             </div>
           </div>
         </div>
-
         <div class="col">
           <div class="card h-100">
-            <img
-              src="https://i.postimg.cc/0y5CSgNr/image.jpg"
-              class="card-img-top"
-            />
+            <a href="/team2"
+              ><img
+                src="https://i.namu.wiki/i/6nJq7Dza9kRKQbvw-EBUHqArvnLuKWGqeaWTT5odfIp1mJnrJNuLRe5hmxC3eXQtB0_1sQiknnDOpT0-kz1baA.webp"
+                ,
+                class="card-img-top"
+            /></a>
             <div class="card-body">
-              <h5 class="card-title">김채현</h5>
-              <p class="MBTI">ENFP</p>
-              <p class="card-text">다 같이 화이팅합시당😀​</p>
-              <p>
-                <a href="https://sugoccc.tistory.com/" class="blog-url"
-                  >https://sugoccc.tistory.com/</a
-                >
-              </p>
+              <h3 class="card-title">임설빈</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <a href="/team3"
+              ><img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSH0VhBLQyNionx03jLKlziA9afaQsp4jQPQ&usqp=CAU"
+                ,
+                class="card-img-top"
+            /></a>
+            <div class="card-body">
+              <h3 class="card-title">백예나</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <a href="/team4"
+              ><img
+                src="https://mblogthumb-phinf.pstatic.net/MjAxODAxMjJfNDgg/MDAxNTE2NTUxODA1MTA4.z2DNbBu7qzh8oHuNw_lIyf0PHXwmlUJNJ-YrBulvbc8g.NukBqxTsgSVJSRVHRURoa-6HrJthPq3ZysegHQHvdX0g.PNG.d_hye97/image_7424200191516551777832.png?type=w800"
+                ,
+                class="card-img-top"
+            /></a>
+            <div class="card-body">
+              <h3 class="card-title">김채현</h3>
             </div>
           </div>
         </div>
